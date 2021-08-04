@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import productData from "./data.json";
+import ProductCell from "./components/ProductCell";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [data, setData] = useState(productData);
+
+	return (
+		<div className="gird-container">
+			<nav>NavBar</nav>
+			<main>
+				Main
+				{data.products.map((ele, idx) => {
+					// console.log(ele);
+					return <ProductCell key={ele.id} cellData={ele} />;
+				})}
+			</main>
+			<footer>footer</footer>
+		</div>
+	);
 }
 
 export default App;
