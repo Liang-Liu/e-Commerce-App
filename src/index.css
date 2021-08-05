@@ -3,7 +3,7 @@
 * {
 	box-sizing: border-box;
 	font-family: "Poppins", sans-serif;
-	/* outline: 1px solid black; */
+	outline: 1px solid black;
 }
 
 html {
@@ -38,11 +38,11 @@ nav {
 
 div.content {
 	grid-area: content;
-	/* background-color: #ce7a7a; */
+	background-color: #ce7a7a;
 	display: grid;
 	grid-gap: 1rem;
-	grid-template-areas: "main sidebar";
-	grid-template-rows: auto;
+	grid-template-areas: "filterBar sidebar" "main sidebar";
+	grid-template-rows: 5rem 1fr;
 	grid-template-columns: 3fr 1fr;
 }
 
@@ -79,4 +79,12 @@ img.product {
 	height: 30rem;
 	margin: 0px;
 	z-index: 10;
+}
+
+div.filterBar {
+	grid-area: filterBar;
+	background-color: aqua;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
