@@ -3,6 +3,7 @@ import originalData from "./data.json";
 import ProductCell from "./components/ProductCell";
 import FilterBar from "./components/FilterBar";
 import CartCell from "./components/CartCell";
+import OrderForm from "./components/OrderForm";
 
 const productData = originalData;
 
@@ -10,6 +11,7 @@ function App() {
 	const [data, setData] = useState({
 		products: productData.products,
 		cartItems: [],
+		showOrderForm: false,
 	});
 
 	function sortProduct(e) {
@@ -99,10 +101,7 @@ function App() {
 		}
 	}
 	function removeFromCart(item) {
-		console.log(item);
 		const temp = data.cartItems.filter((ele, idx) => {
-			console.log(ele);
-
 			return ele !== item;
 		});
 
@@ -119,6 +118,14 @@ function App() {
 			totalPrice += ele.item.price * ele.count;
 		});
 		return totalPrice;
+	}
+	function submitOrder(clientInfo) {
+		const finalOrder = {
+			orderItems: data.cartItems,
+			clientInfo: clientInfo,
+		};
+		console.log(finalOrder);
+		setData((prev) => ({ ...prev, cartItems: [], showOrderForm: false }));
 	}
 
 	return (
@@ -145,7 +152,6 @@ function App() {
 				<div className="sidebar">
 					shopping cart
 					<h3>You have {data.cartItems.length} item in cart</h3>
-					{console.log(data.cartItems)}
 					{data.cartItems.map((ele, idx) => {
 						return (
 							<CartCell
@@ -156,17 +162,29 @@ function App() {
 						);
 					})}
 					{data.cartItems.length !== 0 && (
-						<div className="proceedSection">
-							<h4>Total: $ {countTotalPrice(data.cartItems)}</h4>
-							<button
-								className="proceed"
-								onClick={(e) => {
-									// addToCartFunc(cellData);
-								}}
-							>
-								Proceed
-							</button>
-						</div>
+						<>
+							<div className="proceedSection">
+								<h4>Total: $ {countTotalPrice(data.cartItems)}</h4>
+								<button
+									className="proceed"
+									onClick={(e) => {
+										setData((prevData) => {
+											return {
+												...prevData,
+												showOrderForm: true,
+											};
+										});
+									}}
+								>
+									Proceed
+								</button>
+							</div>
+							{data.showOrderForm && (
+								<div className="orderForm">
+									<OrderForm submitOrderFunc={submitOrder} />
+								</div>
+							)}
+						</>
 					)}
 				</div>
 			</div>
