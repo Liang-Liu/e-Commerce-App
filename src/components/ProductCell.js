@@ -1,6 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addToCartAction } from "../actions/action";
 
 function ProductCell({ cellData, addToCartFunc }) {
+	const dispatch = useDispatch();
+
 	const { id, image, title, description, availableSizes, price } = cellData;
 
 	return (
@@ -11,7 +15,7 @@ function ProductCell({ cellData, addToCartFunc }) {
 			<button
 				className="addToCart"
 				onClick={(e) => {
-					addToCartFunc(cellData);
+					dispatch(addToCartAction(cellData));
 				}}
 			>
 				Add To Cart

@@ -1,117 +1,14 @@
-import { useState } from "react";
-import originalData from "./data.json";
 import ProductCell from "./components/ProductCell";
 import FilterBar from "./components/FilterBar";
 import CartCell from "./components/CartCell";
 import OrderForm from "./components/OrderForm";
-
-const productData = originalData;
+import { useDispatch, useSelector } from "react-redux";
+import { proceedBtnAction } from "./actions/action";
 
 function App() {
-	const [data, setData] = useState({
-		products: productData.products,
-		cartItems: [],
-		showOrderForm: false,
-	});
+	const state = useSelector((state) => state);
+	const dispatch = useDispatch();
 
-	function sortProduct(e) {
-		const sortValue = e.target.value;
-		if (sortValue === "latest") {
-			setData((prevData) => {
-				return {
-					...prevData,
-					products: productData.products,
-				};
-			});
-		} else if (sortValue === "lowest") {
-			function compareFunc(a, b) {
-				return a.price - b.price;
-			}
-			const tempArr = data.products;
-			const nextData = [...tempArr].sort(compareFunc);
-			setData((prevData) => {
-				return {
-					...prevData,
-					products: nextData,
-				};
-			});
-		} else if (sortValue === "highest") {
-			function compareFunc(a, b) {
-				return b.price - a.price;
-			}
-			const tempArr = data.products;
-			const nextData = [...tempArr].sort(compareFunc);
-			setData((prevData) => {
-				return {
-					...prevData,
-					products: nextData,
-				};
-			});
-		}
-	}
-	function FilterProduct(e) {
-		const filterValue = e.target.value;
-		if (filterValue === "ALL") {
-			setData((prevData) => {
-				return {
-					...prevData,
-					products: productData.products,
-				};
-			});
-		} else {
-			const nextData = productData.products.filter((ele, idx) =>
-				ele.availableSizes.includes(filterValue)
-			);
-			setData((prevData) => {
-				return {
-					...prevData,
-					products: nextData,
-				};
-			});
-		}
-	}
-	function addToCart(item) {
-		// console.log(item);
-		function someCallBackFunc(ele, idx) {
-			return ele.item.id === item.id;
-		}
-
-		if (!data.cartItems.some(someCallBackFunc)) {
-			setData((prevData) => {
-				const cartItem = { item: item, count: 1 };
-				return {
-					...prevData,
-					cartItems: [...prevData.cartItems, cartItem],
-				};
-			});
-		}
-		if (data.cartItems.some(someCallBackFunc)) {
-			const temp = data.cartItems.map((ele, idx) => {
-				if (ele.item.id === item.id) {
-					ele.count++;
-				}
-				return ele;
-			});
-			setData((prevData) => {
-				return {
-					...prevData,
-					cartItems: temp,
-				};
-			});
-		}
-	}
-	function removeFromCart(item) {
-		const temp = data.cartItems.filter((ele, idx) => {
-			return ele !== item;
-		});
-
-		setData((prevData) => {
-			return {
-				...prevData,
-				cartItems: temp,
-			};
-		});
-	}
 	function countTotalPrice(arr) {
 		let totalPrice = 0;
 		arr.forEach((ele, idx) => {
@@ -119,69 +16,41 @@ function App() {
 		});
 		return totalPrice;
 	}
-	function submitOrder(clientInfo) {
-		const finalOrder = {
-			orderItems: data.cartItems,
-			clientInfo: clientInfo,
-		};
-		console.log(finalOrder);
-		setData((prev) => ({ ...prev, cartItems: [], showOrderForm: false }));
-	}
 
 	return (
 		<div className="gird-container">
 			<nav>NavBar</nav>
 			<div className="content">
 				content
-				<FilterBar
-					sortProductFunc={sortProduct}
-					FilterProductFunc={FilterProduct}
-				/>
+				<FilterBar />
 				<main>
 					Main
-					{data.products.map((ele, idx) => {
-						return (
-							<ProductCell
-								key={ele.id}
-								cellData={ele}
-								addToCartFunc={addToCart}
-							/>
-						);
+					{state.products.map((ele, idx) => {
+						return <ProductCell key={ele.id} cellData={ele} />;
 					})}
 				</main>
 				<div className="sidebar">
 					shopping cart
-					<h3>You have {data.cartItems.length} item in cart</h3>
-					{data.cartItems.map((ele, idx) => {
-						return (
-							<CartCell
-								key={ele.item.id}
-								cartItemData={ele}
-								removeFromCartFunc={removeFromCart}
-							/>
-						);
+					<h3>You have {state.cartItems.length} item in cart</h3>
+					{state.cartItems.map((ele, idx) => {
+						return <CartCell key={ele.item.id} cartItemData={ele} />;
 					})}
-					{data.cartItems.length !== 0 && (
+					{state.cartItems.length !== 0 && (
 						<>
 							<div className="proceedSection">
-								<h4>Total: $ {countTotalPrice(data.cartItems)}</h4>
+								<h4>Total: $ {countTotalPrice(state.cartItems)}</h4>
 								<button
 									className="proceed"
 									onClick={(e) => {
-										setData((prevData) => {
-											return {
-												...prevData,
-												showOrderForm: true,
-											};
-										});
+										dispatch(proceedBtnAction());
 									}}
 								>
 									Proceed
 								</button>
 							</div>
-							{data.showOrderForm && (
+							{state.showOrderForm && (
 								<div className="orderForm">
-									<OrderForm submitOrderFunc={submitOrder} />
+									<OrderForm />
 								</div>
 							)}
 						</>

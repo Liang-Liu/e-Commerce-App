@@ -1,7 +1,10 @@
 import React from "react";
-import OrderForm from "./OrderForm";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCartAction } from "../actions/action";
 
-function CartCell({ cartItemData, removeFromCartFunc }) {
+function CartCell({ cartItemData }) {
+	const dispatch = useDispatch();
+
 	const { item, count } = cartItemData;
 	const { id, image, title, description, availableSizes, price } = item;
 
@@ -20,7 +23,7 @@ function CartCell({ cartItemData, removeFromCartFunc }) {
 					<button
 						className="remove"
 						onClick={(e) => {
-							removeFromCartFunc(cartItemData);
+							dispatch(removeFromCartAction(cartItemData));
 						}}
 					>
 						Remove
