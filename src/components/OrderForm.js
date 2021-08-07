@@ -1,7 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { submitOrderAction } from "../actions/action";
 
-function OrderForm({ submitOrderFunc }) {
+function OrderForm() {
+	const dispatch = useDispatch();
+
 	const [clientInfo, setClientInfo] = useState({
 		email: "",
 		name: "",
@@ -54,7 +58,7 @@ function OrderForm({ submitOrderFunc }) {
 				type="submit"
 				form="orderForm"
 				onClick={(e) => {
-					submitOrderFunc(clientInfo);
+					dispatch(submitOrderAction(clientInfo));
 				}}
 			>
 				Submit
