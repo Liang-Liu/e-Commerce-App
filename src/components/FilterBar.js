@@ -10,7 +10,7 @@ function FilterBar() {
 		<div className="filterBar">
 			6 products
 			<div className="sortBar">
-				<label for="sortBar">Sort By:</label>
+				<label htmlFor="sortBar">Sort By:</label>
 				<select
 					name="sortBar"
 					id="sortBar"
@@ -24,7 +24,7 @@ function FilterBar() {
 				</select>
 			</div>
 			<div className="filterSizeBar">
-				<label for="filterSizeBar">Filter By:</label>
+				<label htmlFor="filterSizeBar">Filter By:</label>
 				<select
 					name="filterSizeBar"
 					id="filterSizeBar"

@@ -4,10 +4,21 @@ import CartCell from "./components/CartCell";
 import OrderForm from "./components/OrderForm";
 import { useDispatch, useSelector } from "react-redux";
 import { proceedBtnAction } from "./actions/action";
+import { useState } from "react";
+import Modal from "react-modal";
 
 function App() {
 	const state = useSelector((state) => state);
 	const dispatch = useDispatch();
+	const [showOrderConfirmationModal, setShowOrderConfirmationModal] =
+		useState(false);
+
+	const handleShowModal = () => {
+		setShowOrderConfirmationModal(true);
+	};
+	const handleCloseModal = () => {
+		setShowOrderConfirmationModal(false);
+	};
 
 	function countTotalPrice(arr) {
 		let totalPrice = 0;
@@ -50,14 +61,25 @@ function App() {
 							</div>
 							{state.showOrderForm && (
 								<div className="orderForm">
-									<OrderForm />
+									<OrderForm handleShowModalFunc={handleShowModal} />
 								</div>
 							)}
 						</>
 					)}
 				</div>
 			</div>
+			<Modal isOpen={showOrderConfirmationModal} ariaHideApp={false}>
+				<button
+					onClick={(e) => {
+						handleCloseModal();
+					}}
+				>
+					Close Modal
+				</button>
+				<h1>Your Order Is Submitted Successfully! </h1>
 
+				{console.log(state.submittedOrderDetail)}
+			</Modal>
 			<footer>footer</footer>
 		</div>
 	);

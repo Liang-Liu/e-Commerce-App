@@ -7,6 +7,7 @@ const initialState = {
 	products: productData.products,
 	cartItems: [],
 	showOrderForm: false,
+	submittedOrderDetail: {},
 	originalData: originalData,
 };
 
@@ -15,6 +16,5 @@ const store = createStore(
 	initialState,
 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
-
 
 export default store;
