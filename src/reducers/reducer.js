@@ -100,8 +100,12 @@ function reducer(state, action) {
 				orderItems: state.cartItems,
 				clientInfo: clientInfo,
 			};
-			console.log(finalOrder);
-			return { ...state, cartItems: [], showOrderForm: false };
+			return {
+				...state,
+				cartItems: [],
+				showOrderForm: false,
+				submittedOrderDetail: finalOrder,
+			};
 			break;
 
 		default:

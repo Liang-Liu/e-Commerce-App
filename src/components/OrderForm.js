@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { submitOrderAction } from "../actions/action";
 
-function OrderForm() {
+function OrderForm({ handleShowModalFunc }) {
 	const dispatch = useDispatch();
 
 	const [clientInfo, setClientInfo] = useState({
@@ -22,48 +22,51 @@ function OrderForm() {
 	}
 
 	return (
-		<form id="orderForm">
-			<label for="email">Email:</label>
-			<input
-				type="email"
-				id="email"
-				name="email"
-				onChange={(e) => {
-					handleOnChange(e);
-				}}
-			/>
-			<br />
-			<label for="name">Name:</label>
-			<input
-				type="text"
-				id="name"
-				name="name"
-				onChange={(e) => {
-					handleOnChange(e);
-				}}
-			/>
-			<br />
-			<label for="address">Address:</label>
-			<input
-				type="text"
-				id="address"
-				name="address"
-				onChange={(e) => {
-					handleOnChange(e);
-				}}
-			/>
-			<br />
+		<>
+			<form id="orderForm">
+				<label htmlFor="email">Email:</label>
+				<input
+					type="email"
+					id="email"
+					name="email"
+					onChange={(e) => {
+						handleOnChange(e);
+					}}
+				/>
+				<br />
+				<label htmlFor="name">Name:</label>
+				<input
+					type="text"
+					id="name"
+					name="name"
+					onChange={(e) => {
+						handleOnChange(e);
+					}}
+				/>
+				<br />
+				<label htmlFor="address">Address:</label>
+				<input
+					type="text"
+					id="address"
+					name="address"
+					onChange={(e) => {
+						handleOnChange(e);
+					}}
+				/>
+				<br />
 
-			<button
-				type="submit"
-				form="orderForm"
-				onClick={(e) => {
-					dispatch(submitOrderAction(clientInfo));
-				}}
-			>
-				Submit
-			</button>
-		</form>
+				<button
+					type="submit"
+					form="orderForm"
+					onClick={(e) => {
+						dispatch(submitOrderAction(clientInfo));
+						handleShowModalFunc();
+					}}
+				>
+					Submit
+				</button>
+			</form>
+		</>
 	);
 }
 
