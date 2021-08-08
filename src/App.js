@@ -10,6 +10,8 @@ import Modal from "react-modal";
 
 function App() {
 	const state = useSelector((state) => state);
+	console.log(state);
+
 	// useEffect(() => {
 	// 	dispatch(fetchAction());
 	// }, []);
@@ -34,13 +36,12 @@ function App() {
 
 	return (
 		<div className="gird-container">
-			<nav>NavBar</nav>
+			<nav>
+				<h1>TrendyClothes</h1>
+			</nav>
 			<div className="content">
-				content
 				<FilterBar />
 				<main>
-					Main
-					{console.log(state)}
 					{state.products.map((ele, idx) => {
 						return <ProductCell key={ele.id} cellData={ele} />;
 					})}
@@ -83,7 +84,9 @@ function App() {
 				</button>
 				<h1>Your Order Is Submitted Successfully! </h1>
 			</Modal>
-			<footer>footer</footer>
+			<footer>
+				<h5>Copyright © 2021</h5>
+			</footer>
 		</div>
 	);
 }

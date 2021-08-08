@@ -1,3 +1,5 @@
+import _ from "lodash"; // cool kids know _ is low-dash
+
 function reducer(state, action) {
 	switch (action.type) {
 		case "FILTER":
@@ -50,6 +52,7 @@ function reducer(state, action) {
 
 		case "ADD_TO_CART":
 			const item = action.payload;
+			console.log(state);
 			function someCallBackFunc(ele, idx) {
 				return ele.item.id === item.id;
 			}
@@ -64,13 +67,34 @@ function reducer(state, action) {
 			if (state.cartItems.some(someCallBackFunc)) {
 				const temp = state.cartItems.map((ele, idx) => {
 					if (ele.item.id === item.id) {
-						ele.count++;
+						ele.count += 1;
+						return ele;
 					}
 					return ele;
 				});
+
+				const newArr = _.cloneDeep(temp);
+				console.log(temp);
+				console.log(newArr);
+				// const temp = state.cartItems.map((ele, idx) => {
+				// 	if (ele.item.id === item.id) {
+				// 		return ele;
+				// 	}
+				// });
+				// console.log(temp);
+				// const num = temp[0].count + 1;
+				// const inItem = { ...temp[0], count: num };
+				// console.log(inItem);
+				console.log(state);
+
+				// const updatedItem = state.cartItems.filter(
+				// 	(ele) => ele.item.id === item.id
+				// );
+
 				return {
 					...state,
-					cartItems: temp,
+					cartItems: newArr,
+					// cartItems: [...state.cartItems, updatedItem],
 				};
 			}
 			break;

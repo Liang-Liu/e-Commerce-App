@@ -25,7 +25,7 @@ function ProductCell({ cellData, addToCartFunc }) {
 				}}
 			>
 				<img className="product" src={image} alt="id" />
-				<div className="title">{title}</div>
+				<h4 className="title">{title}</h4>
 			</div>
 			<div className="price">${price}</div>
 			<button
