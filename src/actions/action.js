@@ -34,3 +34,26 @@ export function submitOrderAction(param) {
 		payload: param,
 	};
 }
+
+// *********************************API Ready Section*****************************************
+
+// export function updateProductAction(param) {
+// 	return {
+// 		type: "UPDATE_PRODUCT",
+// 		payload: param,
+// 	};
+// }
+// export function fetchAction(param) {
+// 	async function getProductData() {
+// 		const rep = await fetch(
+// 			"https://fakestoreapi.com/products/category/electronics"
+// 		);
+// 		const repJson = await rep.json();
+// 		return repJson;
+// 	}
+// 	return async (dispatch) => {
+// 		const data = await getProductData();
+// 		console.log(data);
+// 			dispatch(updateProductAction(data));
+// 	};
+// }

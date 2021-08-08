@@ -4,11 +4,15 @@ import CartCell from "./components/CartCell";
 import OrderForm from "./components/OrderForm";
 import { useDispatch, useSelector } from "react-redux";
 import { proceedBtnAction } from "./actions/action";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "react-modal";
+// import { fetchAction } from "./actions/action";
 
 function App() {
 	const state = useSelector((state) => state);
+	// useEffect(() => {
+	// 	dispatch(fetchAction());
+	// }, []);
 	const dispatch = useDispatch();
 	const [showOrderConfirmationModal, setShowOrderConfirmationModal] =
 		useState(false);
@@ -36,6 +40,7 @@ function App() {
 				<FilterBar />
 				<main>
 					Main
+					{console.log(state)}
 					{state.products.map((ele, idx) => {
 						return <ProductCell key={ele.id} cellData={ele} />;
 					})}
@@ -77,8 +82,6 @@ function App() {
 					Close Modal
 				</button>
 				<h1>Your Order Is Submitted Successfully! </h1>
-
-				{console.log(state.submittedOrderDetail)}
 			</Modal>
 			<footer>footer</footer>
 		</div>

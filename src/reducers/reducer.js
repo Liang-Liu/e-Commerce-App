@@ -107,6 +107,16 @@ function reducer(state, action) {
 				submittedOrderDetail: finalOrder,
 			};
 			break;
+		case "UPDATE_PRODUCT":
+			const product = action.payload;
+			console.log(product);
+			console.log(state);
+			return {
+				...state,
+				products: product,
+				originalData: product,
+			};
+			break;
 
 		default:
 			return state;
