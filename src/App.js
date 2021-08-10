@@ -16,6 +16,7 @@ function App() {
 	const dispatch = useDispatch();
 	const [showOrderConfirmationModal, setShowOrderConfirmationModal] =
 		useState(false);
+	const [showCart, setShowCart] = useState(false);
 
 	const handleShowModal = () => {
 		setShowOrderConfirmationModal(true);
@@ -23,6 +24,11 @@ function App() {
 	const handleCloseModal = () => {
 		setShowOrderConfirmationModal(false);
 	};
+
+	function toggleCartClass() {
+		setShowCart((prev) => !prev);
+		console.log(showCart);
+	}
 
 	function countTotalPrice(arr) {
 		let totalPrice = 0;
@@ -35,7 +41,12 @@ function App() {
 	return (
 		<div className="gird-container">
 			<nav>
-				<h1>TrendyClothes</h1>
+				<a href="/">
+					<h1 style={{ margin: "0.5rem" }}>TrendyClothes</h1>
+				</a>
+				<button id="cartBtn" onClick={() => toggleCartClass()}>
+					<i className="fas fa-shopping-cart"></i>
+				</button>
 			</nav>
 			<div className="content">
 				<FilterBar />
@@ -44,7 +55,7 @@ function App() {
 						return <ProductCell key={ele.id} cellData={ele} />;
 					})}
 				</main>
-				<div className="sidebar">
+				<div className={`sidebar ${showCart ? "showCart" : ""}`}>
 					<h3>Your Shopping Cart</h3>
 					<h4 style={{ margin: 0 }}>{state.cartItems.length} items in cart</h4>
 					<div className="cartCellsContainer">
