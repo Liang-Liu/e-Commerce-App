@@ -1,3 +1,5 @@
+import _ from "lodash"; // cool kids know _ is low-dash
+
 function reducer(state, action) {
 	switch (action.type) {
 		case "FILTER":
@@ -16,7 +18,7 @@ function reducer(state, action) {
 					products: nextData,
 				};
 			}
-			break;
+			// break;
 
 		case "SORT":
 			const sortValue = action.payload;
@@ -50,6 +52,7 @@ function reducer(state, action) {
 
 		case "ADD_TO_CART":
 			const item = action.payload;
+			console.log(state);
 			function someCallBackFunc(ele, idx) {
 				return ele.item.id === item.id;
 			}
@@ -64,13 +67,17 @@ function reducer(state, action) {
 			if (state.cartItems.some(someCallBackFunc)) {
 				const temp = state.cartItems.map((ele, idx) => {
 					if (ele.item.id === item.id) {
-						ele.count++;
+						ele.count += 1;
+						return ele;
 					}
 					return ele;
 				});
+
+				const newArr = _.cloneDeep(temp);
+
 				return {
 					...state,
-					cartItems: temp,
+					cartItems: newArr,
 				};
 			}
 			break;
@@ -85,14 +92,14 @@ function reducer(state, action) {
 				...state,
 				cartItems: temp,
 			};
-			break;
+			// break;
 
 		case "PROCEED_BTN":
 			return {
 				...state,
 				showOrderForm: true,
 			};
-			break;
+			// break;
 
 		case "SUBMIT_ORDER":
 			const clientInfo = action.payload;
@@ -106,7 +113,7 @@ function reducer(state, action) {
 				showOrderForm: false,
 				submittedOrderDetail: finalOrder,
 			};
-			break;
+			// break;
 		case "UPDATE_PRODUCT":
 			const product = action.payload;
 			console.log(product);
@@ -116,11 +123,11 @@ function reducer(state, action) {
 				products: product,
 				originalData: product,
 			};
-			break;
+			// break;
 
 		default:
 			return state;
-			break;
+			// break;
 	}
 }
 

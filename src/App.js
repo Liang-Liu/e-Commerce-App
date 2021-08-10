@@ -4,7 +4,7 @@ import CartCell from "./components/CartCell";
 import OrderForm from "./components/OrderForm";
 import { useDispatch, useSelector } from "react-redux";
 import { proceedBtnAction } from "./actions/action";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Modal from "react-modal";
 // import { fetchAction } from "./actions/action";
 
@@ -26,43 +26,46 @@ function App() {
 
 	function countTotalPrice(arr) {
 		let totalPrice = 0;
-		arr.forEach((ele, idx) => {
+		arr.forEach((ele) => {
 			totalPrice += ele.item.price * ele.count;
 		});
-		return totalPrice;
+		return totalPrice.toFixed(1);
 	}
 
 	return (
 		<div className="gird-container">
-			<nav>NavBar</nav>
+			<nav>
+				<h1>TrendyClothes</h1>
+			</nav>
 			<div className="content">
-				content
 				<FilterBar />
 				<main>
-					Main
-					{console.log(state)}
-					{state.products.map((ele, idx) => {
+					{state.products.map((ele) => {
 						return <ProductCell key={ele.id} cellData={ele} />;
 					})}
 				</main>
 				<div className="sidebar">
-					shopping cart
-					<h3>You have {state.cartItems.length} item in cart</h3>
-					{state.cartItems.map((ele, idx) => {
-						return <CartCell key={ele.item.id} cartItemData={ele} />;
-					})}
+					<h3>Your Shopping Cart</h3>
+					<h4 style={{ margin: 0 }}>{state.cartItems.length} items in cart</h4>
+					<div className="cartCellsContainer">
+						{state.cartItems.map((ele) => {
+							return <CartCell key={ele.item.id} cartItemData={ele} />;
+						})}
+					</div>
 					{state.cartItems.length !== 0 && (
 						<>
 							<div className="proceedSection">
 								<h4>Total: $ {countTotalPrice(state.cartItems)}</h4>
-								<button
-									className="proceed"
-									onClick={(e) => {
-										dispatch(proceedBtnAction());
-									}}
-								>
-									Proceed
-								</button>
+								<div className="buttonInSidebar">
+									<button
+										className="proceed button button--pan"
+										onClick={(e) => {
+											dispatch(proceedBtnAction());
+										}}
+									>
+										<span>Proceed Order</span>
+									</button>
+								</div>
 							</div>
 							{state.showOrderForm && (
 								<div className="orderForm">
@@ -73,17 +76,27 @@ function App() {
 					)}
 				</div>
 			</div>
-			<Modal isOpen={showOrderConfirmationModal} ariaHideApp={false}>
+			<Modal
+				isOpen={showOrderConfirmationModal}
+				ariaHideApp={false}
+				className="submitModal"
+			>
+				<h1>Thank you! Your order was successfully submitted!</h1>
+				<div id="icon">
+					<i className="far fa-check-circle"></i>
+				</div>
 				<button
-					onClick={(e) => {
+					className="button button--pan"
+					onClick={() => {
 						handleCloseModal();
 					}}
 				>
-					Close Modal
+					<span>Got it!</span>
 				</button>
-				<h1>Your Order Is Submitted Successfully! </h1>
 			</Modal>
-			<footer>footer</footer>
+			<footer>
+				<h5>Copyright © 2021</h5>
+			</footer>
 		</div>
 	);
 }

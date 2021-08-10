@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addToCartAction } from "../actions/action";
 import Modal from "react-modal";
 
-function ProductCell({ cellData, addToCartFunc }) {
+function ProductCell({ cellData }) {
 	const [showModal, setShowModal] = useState(false);
 	const dispatch = useDispatch();
 
@@ -14,42 +14,50 @@ function ProductCell({ cellData, addToCartFunc }) {
 		setShowModal(false);
 	};
 
-	const { id, image, title, description, availableSizes, price } = cellData;
+	const { image, title, description, availableSizes, price } = cellData;
 
 	return (
 		<div className="productCell-container">
 			<div
 				className="productModal"
-				onClick={(e) => {
+				onClick={() => {
 					handleShowModal();
 				}}
 			>
 				<img className="product" src={image} alt="id" />
-				<div className="title">{title}</div>
+				<h4 className="title">{title}</h4>
 			</div>
 			<div className="price">${price}</div>
 			<button
-				className="addToCart"
-				onClick={(e) => {
+				className="addToCart iconBtn"
+				onClick={() => {
 					dispatch(addToCartAction(cellData));
 				}}
 			>
-				Add To Cart
+				<i className="fas fa-cart-plus"></i>
 			</button>
 
 			<Modal isOpen={showModal} ariaHideApp={false}>
-				<button
-					onClick={(e) => {
-						handleCloseModal();
-					}}
-				>
-					Close Modal
-				</button>
-				<img className="product" src={image} alt="id" />
-				<h5 className="title">{title}</h5>
-				<p>{description}</p>
-				<p>{availableSizes}</p>
-				<h5 className="price">{price}</h5>
+				<section>
+					<button
+						onClick={() => {
+							handleCloseModal();
+						}}
+						className="iconBtn closeBtn"
+					>
+						<i className="far fa-window-close"></i>
+					</button>
+					<div className="productModalContent">
+						<img className="productModal" src={image} alt="id" />
+						<div className="modelText">
+							<h3 className="title">{title}</h3>
+							<p>{description}</p>
+							{console.log(availableSizes)}
+							<h3>Available Sizes: {availableSizes.join(", ")}</h3>
+							<h3 className="price">Price: ${price}</h3>
+						</div>
+					</div>
+				</section>
 			</Modal>
 		</div>
 	);
