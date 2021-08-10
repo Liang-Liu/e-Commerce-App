@@ -1,13 +1,14 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { filterAction, sortAction } from "../actions/action";
 
 function FilterBar() {
 	const dispatch = useDispatch();
+	const state = useSelector((state) => state);
 
 	return (
 		<div className="filterBar">
-			6 Products In Total
+			<strong>{state.products.length} Products</strong>
 			<div className="sortBar">
 				<label htmlFor="sortBar">Sort By: </label>
 				<select
