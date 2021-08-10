@@ -1,12 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { removeFromCartAction } from "../actions/action";
 
 function CartCell({ cartItemData }) {
 	const dispatch = useDispatch();
 
 	const { item, count } = cartItemData;
-	const { id, image, title, description, availableSizes, price } = item;
+	const { image, title, price } = item;
 
 	return (
 		<>
@@ -21,12 +21,12 @@ function CartCell({ cartItemData }) {
 					</div>
 
 					<button
-						className="remove"
-						onClick={(e) => {
+						className="remove iconBtn"
+						onClick={() => {
 							dispatch(removeFromCartAction(cartItemData));
 						}}
 					>
-						Remove
+						<i className="fas fa-trash-alt"></i>
 					</button>
 				</div>
 			</div>

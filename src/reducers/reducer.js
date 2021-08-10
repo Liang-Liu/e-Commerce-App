@@ -18,7 +18,7 @@ function reducer(state, action) {
 					products: nextData,
 				};
 			}
-			break;
+			// break;
 
 		case "SORT":
 			const sortValue = action.payload;
@@ -74,27 +74,10 @@ function reducer(state, action) {
 				});
 
 				const newArr = _.cloneDeep(temp);
-				console.log(temp);
-				console.log(newArr);
-				// const temp = state.cartItems.map((ele, idx) => {
-				// 	if (ele.item.id === item.id) {
-				// 		return ele;
-				// 	}
-				// });
-				// console.log(temp);
-				// const num = temp[0].count + 1;
-				// const inItem = { ...temp[0], count: num };
-				// console.log(inItem);
-				console.log(state);
-
-				// const updatedItem = state.cartItems.filter(
-				// 	(ele) => ele.item.id === item.id
-				// );
 
 				return {
 					...state,
 					cartItems: newArr,
-					// cartItems: [...state.cartItems, updatedItem],
 				};
 			}
 			break;
@@ -109,14 +92,14 @@ function reducer(state, action) {
 				...state,
 				cartItems: temp,
 			};
-			break;
+			// break;
 
 		case "PROCEED_BTN":
 			return {
 				...state,
 				showOrderForm: true,
 			};
-			break;
+			// break;
 
 		case "SUBMIT_ORDER":
 			const clientInfo = action.payload;
@@ -130,7 +113,7 @@ function reducer(state, action) {
 				showOrderForm: false,
 				submittedOrderDetail: finalOrder,
 			};
-			break;
+			// break;
 		case "UPDATE_PRODUCT":
 			const product = action.payload;
 			console.log(product);
@@ -140,11 +123,11 @@ function reducer(state, action) {
 				products: product,
 				originalData: product,
 			};
-			break;
+			// break;
 
 		default:
 			return state;
-			break;
+			// break;
 	}
 }
 

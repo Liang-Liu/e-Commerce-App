@@ -3,7 +3,7 @@
 * {
 	box-sizing: border-box;
 	font-family: "Poppins", sans-serif;
-	/* outline: 1px solid black; */
+	outline: 1px solid black;
 }
 
 html {
@@ -68,6 +68,10 @@ footer {
 }
 div.sidebar {
 	grid-area: sidebar;
+	display: flex;
+	/* align-items: center; */
+	/* justify-content: center; */
+	flex-direction: column;
 }
 
 div.productCell-container {
@@ -83,7 +87,8 @@ div.productCell-container {
 	overflow: hidden;
 	/* background-color: #d6cb64fd; */
 	background-color: #ffffff;
-	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px -2px,
+		rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 img.product {
 	object-fit: cover;
@@ -94,6 +99,7 @@ img.product {
 }
 div.productModal {
 	text-align: center;
+	cursor: pointer;
 }
 div.productModal h4 {
 	margin: 0.25rem 0rem;
@@ -106,29 +112,196 @@ div.filterBar {
 	justify-content: space-around;
 	align-items: center;
 }
-
+div.cartCellscontainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 div.cartCell-container {
+	margin: 1rem;
 	display: flex;
 	align-items: center;
-	border-radius: 1rem;
+	border-radius: 0.3rem;
 	overflow: hidden;
-	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 img.product-cell {
 	object-fit: cover;
 	width: 100%;
-	height: 10rem;
+	height: 8rem;
+	min-width: 6rem;
 }
-
+div.cellImage {
+	margin: 0.5rem;
+}
 div.cartCellText {
 	margin: 1rem;
 }
-div.cellImage {
+
+/* ====================== button ======================== */
+div.buttonInSidebar {
+	text-align: center;
 }
-div.title-cell {
+
+.button {
+	pointer-events: auto;
+	cursor: pointer;
+	background: #e7e7e7;
+	border: none;
+	padding: 1rem 2rem;
+	margin: 0;
+	position: relative;
+	display: inline-block;
+	align-self: center;
+	justify-self: end;
 }
-div.price-cell {
+
+.button::before,
+.button::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
-button.remove {
+.button--pan {
+	font-weight: 700;
+	border: 2px solid #000;
+	border-radius: 3rem;
+	overflow: hidden;
+	color: #fff;
+}
+.button--pan span {
+	position: relative;
+	mix-blend-mode: difference;
+}
+
+.button--pan::before {
+	content: "";
+	background: #000;
+	transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.button--pan:hover::before {
+	transform: translate3d(0, -101%, 0);
+}
+
+.iconBtn {
+	font-size: 1rem;
+	cursor: pointer;
+	border: none;
+	color: #8b8b8b;
+}
+.iconBtn:hover {
+	color: #000;
+}
+/* ======================app form======================== */
+#orderForm {
+	margin-top: 3rem;
+	padding: 1rem;
+}
+
+.app-form-control {
+	width: 100%;
+	padding: 10px 0;
+	background: none;
+	border: none;
+	border-bottom: 1px solid #666;
+	color: #000;
+	text-transform: uppercase;
+	outline: none;
+	margin-bottom: 1rem;
+}
+
+.app-form-control::placeholder {
+	color: #6e6e6e;
+}
+
+.app-form-control:focus {
+	border-bottom-color: #ddd;
+}
+
+/* ========================Modal======================= */
+section {
+	position: relative;
+}
+div.productModalContent {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+img.productModal {
+	object-fit: cover;
+	width: 100%;
+	max-width: 50rem;
+	margin: 2rem;
+}
+.closeBtn {
+	position: absolute;
+	right: 0;
+	font-size: 1.25rem;
+}
+div.modelText {
+	max-width: 50rem;
+	min-width: 15rem;
+	margin: 2rem;
+}
+
+.submitModal {
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	right: 25%;
+	bottom: 25%;
+	background-color: #e7e7e7;
+	border-radius: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
+}
+
+#icon {
+	font-size: 4rem;
+	margin-bottom: 3rem;
+	color: #4caf50;
+}
+
+@media only screen and (max-width: 600px) {
+	img.productModal {
+		object-fit: cover;
+		width: 100%;
+		max-width: 50rem;
+		margin: 2rem;
+	}
+	div.productModalContent {
+		display: flex;
+		flex-direction: column;
+		height: 95%;
+		align-items: center;
+		justify-content: center;
+	}
+	.submitModal {
+		position: absolute;
+		top: 10%;
+		left: 10%;
+		right: 10%;
+		bottom: 10%;
+		background-color: #e7e7e7;
+		text-align: center;
+	}
+	div.content {
+		/* overflow: hidden; */
+		/* grid-template-areas: "filterBar filterBar" "main main "; */
+		/* grid-template-rows: 2rem 1fr;
+		grid-template-columns: 1fr 1fr; */
+	}
+
+	div.sidebar {
+		/* transform: translateX(101%); */
+		/* transition: transform 0.3s ease-in; */
+		/* display: none; */
+	}
 }

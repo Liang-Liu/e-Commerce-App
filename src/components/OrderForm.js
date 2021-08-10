@@ -24,17 +24,20 @@ function OrderForm({ handleShowModalFunc }) {
 	return (
 		<>
 			<form id="orderForm">
-				<label htmlFor="email">Email:</label>
-				<input
-					type="email"
-					id="email"
-					name="email"
-					onChange={(e) => {
-						handleOnChange(e);
-					}}
-				/>
-				<br />
-				<label htmlFor="name">Name:</label>
+				<div className="app-form-group">
+					<input
+						type="email"
+						id="email"
+						name="email"
+						onChange={(e) => {
+							handleOnChange(e);
+						}}
+						className="app-form-control"
+						placeholder="Email"
+					/>
+					<br />
+				</div>
+
 				<input
 					type="text"
 					id="name"
@@ -42,9 +45,10 @@ function OrderForm({ handleShowModalFunc }) {
 					onChange={(e) => {
 						handleOnChange(e);
 					}}
+					className="app-form-control"
+					placeholder="Name"
 				/>
 				<br />
-				<label htmlFor="address">Address:</label>
 				<input
 					type="text"
 					id="address"
@@ -52,19 +56,23 @@ function OrderForm({ handleShowModalFunc }) {
 					onChange={(e) => {
 						handleOnChange(e);
 					}}
+					className="app-form-control"
+					placeholder="Address"
 				/>
 				<br />
-
-				<button
-					type="submit"
-					form="orderForm"
-					onClick={(e) => {
-						dispatch(submitOrderAction(clientInfo));
-						handleShowModalFunc();
-					}}
-				>
-					Submit
-				</button>
+				<div className="buttonInSidebar">
+					<button
+						className="button button--pan"
+						type="submit"
+						form="orderForm"
+						onClick={(e) => {
+							dispatch(submitOrderAction(clientInfo));
+							handleShowModalFunc();
+						}}
+					>
+						<span>Submit Order</span>
+					</button>
+				</div>
 			</form>
 		</>
 	);
