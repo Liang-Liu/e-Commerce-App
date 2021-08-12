@@ -335,5 +335,6 @@ div.modelText {
 		margin: 1rem;
 		display: block;
 		font-size: 1.25rem;
+		cursor: pointer;
 	}
 }

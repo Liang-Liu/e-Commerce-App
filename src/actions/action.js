@@ -53,7 +53,6 @@ export function submitOrderAction(param) {
 // 	}
 // 	return async (dispatch) => {
 // 		const data = await getProductData();
-// 		console.log(data);
 // 			dispatch(updateProductAction(data));
 // 	};
 // }

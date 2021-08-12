@@ -52,7 +52,6 @@ function ProductCell({ cellData }) {
 						<div className="modelText">
 							<h3 className="title">{title}</h3>
 							<p>{description}</p>
-							{console.log(availableSizes)}
 							<h3>Available Sizes: {availableSizes.join(", ")}</h3>
 							<h3 className="price">Price: ${price}</h3>
 						</div>

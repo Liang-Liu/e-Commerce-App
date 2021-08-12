@@ -27,7 +27,6 @@ function App() {
 
 	function toggleCartClass() {
 		setShowCart((prev) => !prev);
-		console.log(showCart);
 	}
 
 	function countTotalPrice(arr) {

@@ -18,7 +18,7 @@ function reducer(state, action) {
 					products: nextData,
 				};
 			}
-			// break;
+		// break;
 
 		case "SORT":
 			const sortValue = action.payload;
@@ -52,7 +52,6 @@ function reducer(state, action) {
 
 		case "ADD_TO_CART":
 			const item = action.payload;
-			console.log(state);
 			function someCallBackFunc(ele, idx) {
 				return ele.item.id === item.id;
 			}
@@ -92,14 +91,14 @@ function reducer(state, action) {
 				...state,
 				cartItems: temp,
 			};
-			// break;
+		// break;
 
 		case "PROCEED_BTN":
 			return {
 				...state,
 				showOrderForm: true,
 			};
-			// break;
+		// break;
 
 		case "SUBMIT_ORDER":
 			const clientInfo = action.payload;
@@ -113,21 +112,20 @@ function reducer(state, action) {
 				showOrderForm: false,
 				submittedOrderDetail: finalOrder,
 			};
-			// break;
+		// break;
 		case "UPDATE_PRODUCT":
 			const product = action.payload;
-			console.log(product);
-			console.log(state);
+
 			return {
 				...state,
 				products: product,
 				originalData: product,
 			};
-			// break;
+		// break;
 
 		default:
 			return state;
-			// break;
+		// break;
 	}
 }
 
