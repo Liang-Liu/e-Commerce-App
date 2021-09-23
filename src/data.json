@@ -3,48 +3,48 @@
 		{
 			"id": "dress1",
 			"image": "/images/dress1.jpg",
-			"title": "Midi sundress with shirring detail",
-			"description": "This is for all the latest trends, no matter who you are, where you’re from and what you’re up to. Exclusive to ASOS, our universal brand is here for you, and comes in all our fit ranges: ASOS Curve, Tall, Petite and Maternity. Created by us, styled by you.",
+			"title": "Linen-blend Kaftan Dress",
+			"description": "Calf-length dress in woven, linen-blend fabric with embroidered sections. Mandarin collar, buttons at front, long raglan sleeves with wide cuffs, and pleats and a tie belt at waist. Slits at sides of hem. Unlined.",
 			"availableSizes": ["S", "L", "XL", "XXL"],
 			"price": 29.9
 		},
 		{
 			"id": "dress2",
 			"image": "/images/dress2.jpg",
-			"title": "Midi sundress with ruched front",
-			"description": "This is for all the latest trends, no matter who you are, where you’re from and what you’re up to. Exclusive to ASOS, our universal brand is here for you, and comes in all our fit ranges: ASOS Curve, Tall, Petite and Maternity. Created by us, styled by you.",
+			"title": "Shirt Dress",
+			"description": "Relaxed-fit, calf-length dress in woven fabric. Collar, buttons at front, dropped shoulders, long sleeves, and wide cuffs with slits. Rounded hem. Unlined.",
 			"availableSizes": ["S", "M", "L"],
 			"price": 18.9
 		},
 		{
 			"id": "dress3",
 			"image": "/images/dress3.jpg",
-			"title": "Midi dress in pink ditsy floral",
-			"description": "This is for all the latest trends, no matter who you are, where you’re from and what you’re up to. Exclusive to ASOS, our universal brand is here for you, and comes in all our fit ranges: ASOS Curve, Tall, Petite and Maternity. Created by us, styled by you.",
+			"title": "Collared Sweatshirt Dress",
+			"description": "Short sweatshirt dress in cotton-blend fabric. High collar, 1/4-zip, and long sleeves with cuffs. Soft, brushed inside.",
 			"availableSizes": ["S", "M", "L"],
 			"price": 14.9
 		},
 		{
 			"id": "dress4",
 			"image": "/images/dress4.jpg",
-			"title": "Cami maxi dress in polka dot",
-			"description": "This is for all the latest trends, no matter who you are, where you’re from and what you’re up to. Exclusive to ASOS, our universal brand is here for you, and comes in all our fit ranges: ASOS Curve, Tall, Petite and Maternity. Created by us, styled by you.",
+			"title": "Sweatshirt Dress",
+			"description": "Relaxed-fit, knee-length sweatshirt dress in cotton-blend fabric. Dropped shoulders, long sleeves, and ribbing at neckline, cuffs, and hem.",
 			"availableSizes": ["XL"],
 			"price": 25.9
 		},
 		{
 			"id": "dress5",
 			"image": "/images/dress5.jpg",
-			"title": "Frill mini dress in yellow polka dot",
-			"description": "This is for all the latest trends, no matter who you are, where you’re from and what you’re up to. Exclusive to ASOS, our universal brand is here for you, and comes in all our fit ranges: ASOS Curve, Tall, Petite and Maternity. Created by us, styled by you.",
+			"title": "Draped Satin Dress",
+			"description": "Sleeveless, calf-length dress in satin. Wide, crossover straps to tie at back of waist for a draped effect at front. Concealed zipper at back. Unlined.",
 			"availableSizes": ["S", "L", "XL"],
 			"price": 10.9
 		},
 		{
 			"id": "dress6",
 			"image": "/images/dress6.jpg",
-			"title": "Midi tea dress in blue and red spot",
-			"description": "This is for all the latest trends, no matter who you are, where you’re from and what you’re up to. Exclusive to ASOS, our universal brand is here for you, and comes in all our fit ranges: ASOS Curve, Tall, Petite and Maternity. Created by us, styled by you.",
+			"title": "Hooded Dress",
+			"description": "Straight-cut, knee-length sweatshirt dress in a cotton and recycled polyester blend. Double-layered hood with drawstring. Dropped shoulders and long sleeves with ribbed cuffs. Slits at sides. Lightly brushed inside.",
 			"availableSizes": ["XL", "XXL"],
 			"price": 49.9
 		}

@@ -6,13 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { proceedBtnAction } from "./actions/action";
 import { useState } from "react";
 import Modal from "react-modal";
-// import { fetchAction } from "./actions/action";
 
 function App() {
 	const state = useSelector((state) => state);
-	// useEffect(() => {
-	// 	dispatch(fetchAction());
-	// }, []);
+
 	const dispatch = useDispatch();
 	const [showOrderConfirmationModal, setShowOrderConfirmationModal] =
 		useState(false);
